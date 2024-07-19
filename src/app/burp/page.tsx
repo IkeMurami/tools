@@ -38,6 +38,10 @@ export default function Page() {
         )
     }
 
+    const downloadLinkClickHandler = () => {
+        setCommpressedData(undefined)
+    }
+
     return (
         <main className={styles.main}>
             <h1>Site map parser <sup className={styles.how}>
@@ -53,6 +57,7 @@ export default function Page() {
                     href={URL.createObjectURL(compressedData)}
                     target="_blank"
                     download="archive.zip"
+                    onClick={downloadLinkClickHandler}
                 >
                     Click me to download file
                 </Link>

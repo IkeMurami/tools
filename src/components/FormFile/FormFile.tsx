@@ -40,7 +40,13 @@ const FormFile: FC<PropsWithChildren<Props>> = ({className, children, callback})
 
     return (
         <form action="/" className={classNames(styles.form, className)} onSubmit={submitHandler}>
-            <input className={styles.input} ref={ref} onChange={changeHandler} type="file" />
+            <input
+                multiple
+                className={styles.input}
+                ref={ref}
+                onChange={changeHandler}
+                type="file"
+            />
             <button className={styles.button} type="submit" onClick={clickHandler}>
                 {children}
             </button>
