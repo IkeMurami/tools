@@ -18,7 +18,7 @@ export default function Header() {
             />
             <Logo 
                 priority
-                link="https://github.com/"
+                link="https://github.com/IkeMurami/tools"
                 className={styles.github}
                 src={`${BASE_PATH}/github.svg`}
                 height={48}
