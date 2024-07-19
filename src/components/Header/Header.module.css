@@ -1,0 +1,15 @@
+.container {
+    display: inline-block;
+    width: 100%;
+
+}
+
+.home {
+    float: left;
+    padding: 20px;
+}
+
+.github {
+    float: right;
+    padding: 20px;
+}
