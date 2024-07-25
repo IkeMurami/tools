@@ -1,5 +1,5 @@
 import xmldom from "xmldom"
-import { beautify_css, beautify_html, beautify_js } from "./beautifiers"
+import { beautify_css, beautify_html, beautify_js } from "../../utils/beautifiers"
 
 
 export type Data = {
@@ -18,6 +18,7 @@ export type Item = {
     extension: string | null
     request: Data
     response: Data
+    // js_sourcemap?: string
 }
 
 export const getItems = async (file: File): Promise<HTMLCollectionOf<Element>> => {
@@ -68,12 +69,22 @@ const parseRequestOrResponse = (elem: Element, extension: string | null): Data =
 }
 
 
+const tryFetchSourceMap = (url: string): string | undefined => {
+    const _url = new URL(url)
+    _url.pathname += '.map'
+    
+    console.log('NEW URL', _url)
+    return undefined
+}
+
+
 export const parseItem = (item: Element): Item => {
     const hostE = item.getElementsByTagName('host')[0]
+    const url = item.getElementsByTagName('url')[0].textContent!
     const extension = item.getElementsByTagName('extension')[0].textContent
 
     return {
-            url: item.getElementsByTagName('url')[0].textContent!,
+            url,
             host: hostE.textContent!,
             ip: hostE.getAttribute('ip')!,
             method: item.getElementsByTagName('method')[0].textContent!,
@@ -83,5 +94,6 @@ export const parseItem = (item: Element): Item => {
             extension: extension,
             request: parseRequestOrResponse(item.getElementsByTagName('request')[0], extension),
             response: parseRequestOrResponse(item.getElementsByTagName('response')[0], extension),
+            // TODO: js_sourcemap: extension === 'js' && tryFetchSourceMap(url) || undefined
     }
 }

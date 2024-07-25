@@ -1,9 +1,8 @@
 import styles from './Header.module.css'
 import Logo from "../Logo/Logo";
+import { BASE_PATH } from '@/utils/consts';
 
 export default function Header() {
-
-    const BASE_PATH = '/tools'
 
     return (
         <div className={styles.container}>

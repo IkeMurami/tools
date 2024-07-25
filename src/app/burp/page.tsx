@@ -1,10 +1,11 @@
 "use client"
 import React, { useRef, useState } from "react"
 import { getItems, parseItem } from "./parser"
-import { compress } from "./compress"
+import { compress } from "../../utils/compress"
 import styles from "./page.module.css"
 import FormFile from "@/components/FormFile/FormFile"
 import Link from "next/link"
+import { BASE_PATH } from "@/utils/consts"
 
 
 export default function Page() {
@@ -47,7 +48,7 @@ export default function Page() {
             <h1>Site map parser <sup className={styles.how}>
                 <Link className={styles.link} href="#">
                     <p>[how]</p>
-                    <video src="how-to.mov" controls autoPlay muted></video>
+                    <video src={`${BASE_PATH}/how-to.mov`} controls autoPlay muted></video>
                 </Link>
             </sup></h1>
             {
